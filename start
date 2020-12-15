@@ -1,6 +1,18 @@
 #!/bin/bash
 
-./idempotent-scripts/check-os-release-compatibility || echo "Incompatible os release! Debian 10 required. Exiting." && exit 1
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+END_COLOR='\033[0m' # No Color
+
+echo "Checking OS version..."
+if [ "$(grep -Ei 'VERSION_ID="10"' /etc/os-release)" ] && [ "$(grep -Ei 'ID=debian' /etc/os-release)" ]; then
+  printf "${GREEN}$(cat /etc/os-release)${END_COLOR}\n"
+  echo "Compatible! Proceeding..."
+else
+  printf "${RED}$(cat /etc/os-release)${END_COLOR}\n"
+  echo "Incompatible os release! Debian 10 required. Exiting."
+  exit 1
+fi
 
 hostname=$1
 [[ $hostname == *"."* ]] || echo "$hostname does not appear to be a valid hostname." && exit 1
