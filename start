@@ -15,7 +15,10 @@ else
 fi
 
 hostname=$1
-[[ $hostname == *"."* ]] || echo "$hostname does not appear to be a valid hostname." && exit 1
+if ! [[ $hostname == *"."* ]]; then
+  echo "$hostname does not appear to be a valid hostname."
+  exit 1
+fi
 
 ./idempotent-scripts/install-dependencies
 ./idempotent-scripts/set-hostname $hostname
