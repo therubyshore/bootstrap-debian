@@ -12,7 +12,6 @@
 ```
 git clone https://github.com/therubyshore/bootstrap-debian-10.git
 cd bootstrap-debian-10
-chmod +x start
 ./start some-hostname.somesite.com
 ```
 
