@@ -1,0 +1,23 @@
+#!/usr/bin/env ruby
+
+# NOTE: Must be run as root!
+
+`cp template-files/nginx/serve-upstream-app /etc/nginx/sites-available`
+`rm /etc/nginx/sites-enabled/default`
+`ln -s /etc/nginx/sites-available/serve-upstream-app /etc/nginx/sites-enabled/serve-upstream-app`
+`cp -r template-files/nginx/snippets /etc/nginx`
+["/etc/nginx/sites-available/serve-upstream-app"].each do |file_name|
+  text = File.read(file_name)
+  new_contents = text.gsub("__HOSTNAME__", `hostname`.strip)
+  File.open(file_name, "w") {|file| file.puts new_contents }
+end
+
+if ! File.exists?('/etc/nginx/dhparam.pem')
+  `sudo openssl dhparam -out /etc/nginx/dhparam.pem 2048`
+end
+
+`mkdir -p /etc/systemd/system/nginx.service.d/`
+`cp template-files/nginx.service.override.conf /etc/systemd/system/nginx.service.d/override.conf`
+`systemctl daemon-reload`
+`systemctl start nginx`
+`systemctl status nginx`

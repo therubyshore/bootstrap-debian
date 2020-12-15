@@ -1,0 +1,5 @@
+#!/bin/bash
+
+sudo cp template-files/unattended-upgrades /etc/apt/apt.conf.d/50unattended-upgrades
+sudo cp template-files/sshd_config /etc/ssh/sshd_config
+cp template-files/bashrc ~/.bashrc

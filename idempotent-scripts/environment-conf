@@ -1,0 +1,5 @@
+#!/bin/bash
+
+sudo cp template-files/environment.conf /home/admin/environment.conf
+mkdir -p /home/admin/.config/environment.d/
+ln -s /home/admin/environment.conf /home/admin/.config/environment.d/environment.conf

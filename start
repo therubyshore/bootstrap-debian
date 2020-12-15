@@ -1,0 +1,17 @@
+#!/bin/bash
+
+hostname=$1
+[[ $hostname == *"."* ]] || echo "$hostname does not appear to be a valid hostname." && exit 1
+
+./idempotent-scripts/install-dependencies
+./idempotent-scripts/set-hostname $hostname
+
+./idempotent-scripts/environment-conf
+sudo ./idempotent-scripts/create-swapfile
+./idempotent-scripts/install-config-files
+sudo ./idempotent-scripts/set-up-nginx
+./idempotent-scripts/set-up-certbot $hostname
+./idempotent-scripts/set-up-docker
+
+echo "Successfully bootstrapped."
+echo "Please restart $hostname."

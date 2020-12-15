@@ -1,0 +1,6 @@
+#!/bin/bash
+
+hostname=$1
+
+echo "### Running certbot interactively ###"
+sudo certbot --nginx -d $hostname --agree-tos --email devs@rubyshore.com --manual-public-ip-logging-ok

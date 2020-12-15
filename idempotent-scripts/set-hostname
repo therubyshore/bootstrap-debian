@@ -1,0 +1,4 @@
+#!/bin/bash
+
+sudo hostname $1
+echo $1 | sudo tee /etc/hostname
