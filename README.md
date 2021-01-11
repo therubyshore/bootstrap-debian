@@ -15,6 +15,6 @@ cd bootstrap-debian-10
 ./start some-hostname.somesite.com
 ```
 
-Then, set up your upstream web application to listen to HTTP traffic on port 8888.
+Then, set up your upstream web application to listen to HTTP traffic on port 3000.
 Nginx is configured to act as a reverse proxy, handling requests from the internet
 and forwarding them to your web app, and handling HTTPS & SSL/TLS for you.
