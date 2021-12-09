@@ -1,6 +1,11 @@
 #!/bin/bash
 
+YELLOW='\033[0;33m'
+END_COLOR='\033[0m' # No Color
+
 hostname=$1
 
 echo "### Running certbot interactively ###"
+printf "${YELLOW}### When prompted by certbot, do not allow it to add an HTTPS redirect to the nginx config. ###${END_COLOR}\n"
+printf "${YELLOW}### This script's nginx config already does that, and certbot would break it. ###${END_COLOR}\n"
 sudo certbot --nginx -d $hostname --agree-tos --email devs@rubyshore.com --manual-public-ip-logging-ok
