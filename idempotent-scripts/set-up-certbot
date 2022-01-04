@@ -1,11 +1,11 @@
-#!/bin/bash
+#!/usr/bin/env ruby
 
-YELLOW='\033[0;33m'
-END_COLOR='\033[0m' # No Color
+YELLOW = "\033[0;33m"
+END_COLOR = "\033[0m" # No Color
 
-hostname=$1
+all_hostnames = ARGV
 
-echo "### Running certbot interactively ###"
-printf "${YELLOW}### When prompted by certbot, do not allow it to add an HTTPS redirect to the nginx config. ###${END_COLOR}\n"
-printf "${YELLOW}### This script's nginx config already does that, and certbot would break it. ###${END_COLOR}\n"
-sudo certbot --nginx -d $hostname --agree-tos --email devs@rubyshore.com --manual-public-ip-logging-ok
+puts "### Running certbot interactively ###"
+puts "#{YELLOW}### When prompted by certbot, select \"No redirect\" so it won't alter the nginx config. ####{END_COLOR}"
+puts "#{YELLOW}### This script's nginx config already does that, and certbot would break it. ####{END_COLOR}"
+exec "sudo certbot --nginx #{all_hostnames.map { |s| "-d #{s}"}.join(" ")} --agree-tos --email devs@rubyshore.com --manual-public-ip-logging-ok --force-interactive"

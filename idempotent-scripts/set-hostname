@@ -1,4 +1,13 @@
-#!/bin/bash
+#!/usr/bin/env ruby
 
-sudo hostname $1
-echo $1 | sudo tee /etc/hostname
+# This must be run as root!
+
+main_hostname = ARGV.first
+
+`hostname #{main_hostname}`
+`echo #{main_hostname} | tee /etc/hostname`
+
+`cp template-files/cloud-init-hostname.cfg /etc/cloud/cloud.cfg.d/50_hostname.cfg`
+current_contents = File.read("/etc/cloud/cloud.cfg.d/50_hostname.cfg")
+new_contents = current_contents.gsub("__HOSTNAME__", main_hostname)
+File.open("/etc/cloud/cloud.cfg.d/50_hostname.cfg", "w") {|file| file.puts new_contents }

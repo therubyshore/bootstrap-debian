@@ -14,21 +14,22 @@ else
   exit 1
 fi
 
-hostname=$1
-if ! [[ $hostname == *"."* ]]; then
-  echo "$hostname does not appear to be a valid hostname."
+all_hostnames=$@
+main_hostname=$1
+if ! [[ $main_hostname == *"."* ]]; then
+  echo "$main_hostname does not appear to be a valid hostname."
   exit 1
 fi
 
 ./idempotent-scripts/install-dependencies
-./idempotent-scripts/set-hostname $hostname
+sudo ./idempotent-scripts/set-hostname $main_hostname
 
 ./idempotent-scripts/environment-conf
 sudo ./idempotent-scripts/create-swapfile
 ./idempotent-scripts/install-config-files
-sudo ./idempotent-scripts/set-up-nginx
-./idempotent-scripts/set-up-certbot $hostname
+sudo ./idempotent-scripts/set-up-nginx $all_hostnames
+./idempotent-scripts/set-up-certbot $all_hostnames
 ./idempotent-scripts/set-up-docker
 
 echo "Successfully bootstrapped."
-echo "Please restart $hostname."
+echo "Please restart $main_hostname."
