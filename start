@@ -5,7 +5,7 @@ GREEN='\033[0;32m'
 END_COLOR='\033[0m' # No Color
 
 echo "Checking OS version..."
-if [ "$(grep -Ei 'VERSION_ID="10"' /etc/os-release)" ] && [ "$(grep -Ei 'ID=debian' /etc/os-release)" ]; then
+if [ "$(grep -Ei 'VERSION_ID="11"' /etc/os-release)" ] && [ "$(grep -Ei 'ID=debian' /etc/os-release)" ]; then
   printf "${GREEN}$(cat /etc/os-release)${END_COLOR}\n"
   echo "Compatible! Proceeding..."
 else
