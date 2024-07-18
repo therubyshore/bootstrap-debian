@@ -2,7 +2,7 @@
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
 
-# Real Smooth Debian 10 Base Image addition: ###################################
+# bootstrap-debian script addition: ############################################
 export $(systemctl --user show-environment | xargs)
     # We set environment vars for this user in ~/.config/environment.d/*.conf,
     # but that doesn't apply to interactive or login shells, so we put it here.

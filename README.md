@@ -1,17 +1,18 @@
 ## Requirements
 
-- Debian 11
+- Debian 12
 - The default Debian admin user is used, and admin is in sudo group.
-  Some Debian 11 images, like Digital Oceean's, do not use this user,
-  and it must be created to match the upstream Debian 11 configuration.
+  Some Debian 12 images, like Digital Oceean's, do not use this user,
+  and it must be created to match the upstream Debian 12 configuration.
 - A fully-qualified DNS hostname already exists and points to
   the box's IP (otherwise, an SSL cert cannot be requested)
 
 ## Usage
 
+Run on server:
 ```
-git clone https://github.com/therubyshore/bootstrap-debian-11.git
-cd bootstrap-debian-11
+git clone https://github.com/therubyshore/bootstrap-debian.git
+cd bootstrap-debian
 ./start some-hostname.somesite.com
 ```
 You can specify multiple hostnames, e.g. "somesite.com www.somesite.com". The first one specified will be considered the primary hostname/fqdn.
