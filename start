@@ -25,7 +25,7 @@ fi
 sudo ./idempotent-scripts/set-hostname $main_hostname
 
 ./idempotent-scripts/environment-conf
-sudo ./idempotent-scripts/create-swapfile
+sudo ./idempotent-scripts/create-swapfile 1G
 ./idempotent-scripts/install-config-files
 sudo ./idempotent-scripts/set-up-nginx $all_hostnames
 ./idempotent-scripts/set-up-certbot $all_hostnames
