@@ -1,9 +1,9 @@
 ## Requirements
 
-- Debian 12
+- Debian 13
 - The default Debian admin user is used, and admin is in sudo group.
-  Some Debian 12 images, like Digital Oceean's, do not use this user,
-  and it must be created to match the upstream Debian 12 configuration.
+  Some Debian 13 images, like Digital Oceean's, do not use this user,
+  and it must be created to match the upstream Debian 13 configuration.
 - A fully-qualified DNS hostname already exists and points to
   the box's IP (otherwise, an SSL cert cannot be requested)
 

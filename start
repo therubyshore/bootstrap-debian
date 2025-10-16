@@ -5,12 +5,12 @@ GREEN='\033[0;32m'
 END_COLOR='\033[0m' # No Color
 
 echo "Checking OS version..."
-if [ "$(grep -Ei 'VERSION_ID="12"' /etc/os-release)" ] && [ "$(grep -Ei 'ID=debian' /etc/os-release)" ]; then
+if [ "$(grep -Ei 'VERSION_ID="13"' /etc/os-release)" ] && [ "$(grep -Ei 'ID=debian' /etc/os-release)" ]; then
   printf "${GREEN}$(cat /etc/os-release)${END_COLOR}\n"
   echo "Compatible! Proceeding..."
 else
   printf "${RED}$(cat /etc/os-release)${END_COLOR}\n"
-  echo "Incompatible os release! Debian 12 required. Exiting."
+  echo "Incompatible os release! Debian 13 required. Exiting."
   exit 1
 fi
 
